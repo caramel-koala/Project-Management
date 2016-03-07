@@ -1,0 +1,37 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{url}
+%----------------------------------------------------------------------------------------------------------------
+\title{ Multiprocessor Optimization of Real World SKA Modeling Problem }
+\author{Antonio Peters}
+\date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%MAIN DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+%----------------------------------------------------------------------------------------------------------------
+
+\section{Introduction}
+The SKA project was started in order to create the worlds largest array of radio telescopes. This will be done by having 197 radio telescopes situated in South Africa and Australia working together and covering an area close to one square kilometer. The array is set to have a resolution of over 50 times that of the Hubble Space Telescope while still covering massive areas of the sky \cite{SKAsite}. But this leads to a problem in the sense that all these detections generate massive amounts of noisy data, but this can be fixed by using mathematical modeling and signal processing to extract the necessary data and also using an optimized algorithm to extract the data and generate results in the fastest time possible. This can also be sped up by using hardware suited to this task, namely GPU's and high performance CPU clusters.
+
+\section{Parallelism}
+One of the main means of optimizing processing is through parallelism. The two main forms of parallelism are task and data parallelism. Task parallelism can be seen as running multiple processes concurrently where communication between the these processes are explicitly defined to avoid race conditions. Data parallelism is the distribution of a data set over a number of identical processes which will perform operations on a unique subset of the data. Race conditions occur when parallel processing streams access data or perform operations out of the intended order, leading to errors or incorrect output being produced. A combination of task and data parallelism can lead to an ideal speedup, but both have their limits depending on the task and the data being operated on \cite{subhlok1993exploiting}.
+\linebreak
+\linebreak
+The increased need for parallelism came in 2005, the CPU frequency peaked at 4GHz due to heat dissipation issues. However, Moore's Law still holds, and is still expected to hold until 2025; that is, that the number of transistors for a computer will double every 2 years. This leads to a problem where the speed at which an operation is done cannot be increased (due to the frequency limit), but the number of concurrent operations can still increase. This means that the only way to speed up an operation is to change it from a sequential to a parallel process \cite{rajan2013informatics}.
+
+\section{GPU}
+GPU's were originally designed for rendering pixels and vectors in games. They were especially designed for this since CPU's are optimized to run sequential instructions as fast as possible; whereas pixel and vector calculations are inherently parallel. With NVIDIA's release of CUDA in 2006, general purpose GPU (GPGPU) programming became common place as a way to accelerate data processing through data parallelism and task parallelism through the simultaneous execution of similar task \cite{nvidia_cuda}.
+\\
+\\
+The power of GPU's come from its architecture which is optimized for a special case of SIMD (Single Instruction Multiple Data) processing known as SMIT (Single Instruction Multiple Threads). SIMD allows a central processor to distribute a set of instructions to multiple simple processors which then act on the data simultaneously. SIMT is more generalized as each thread of the GPU can perform different tasks given the same set of instructions. This is due to the way in which the GPU handles branching at the thread level. By exploiting these processes, and this instructional architecture, some instructions can be computed in faster time than that of a CPU \cite{vuduc2013brief}
+
+%----------------------------------------------------------------------------------------------------------------
+\bibliographystyle{plain}
+\bibliography{IntroPaper}
+%----------------------------------------------------------------------------------------------------------------
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
